@@ -1,53 +1,39 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
 import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
 import CreateBlog from "./pages/CreateBlog";
-import Blogs from "./pages/Blogs";
+import EditBlog from "./pages/EditBlog";
+import Layout from "./components/Layout";
+import BlogDetails from "./pages/BlogDetails";
+import AuthorProfile from "./pages/AuthorProfile";
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Start at login */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/login" />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/forgot" element={<ForgotPassword />} />
 
+        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        <Route path="/profile" element={<Layout><Profile /></Layout>} />
+        <Route path="/create" element={<Layout><CreateBlog /></Layout>} />
+        <Route path="/edit/:id" element={<Layout><EditBlog /></Layout>} />
         <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
+  path="/blog/:id"
+  element={<Layout><BlogDetails /></Layout>}
+/>
 
-        <Route
-          path="/create"
-          element={
-            <ProtectedRoute>
-              <CreateBlog />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/blogs"
-          element={
-            <ProtectedRoute>
-              <Blogs />
-            </ProtectedRoute>
-          }
-        />
+<Route
+  path="/author/:name"
+  element={<Layout><AuthorProfile /></Layout>}
+/>
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;

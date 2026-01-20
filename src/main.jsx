@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { AuthProvider } from "./context/AuthContext";
 import { BlogProvider } from "./context/BlogContext";
+import { ProfileProvider } from "./context/ProfileContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-<AuthProvider>
-  <BlogProvider>
-    <App />
-  </BlogProvider>
-</AuthProvider>
+    <ProfileProvider>
+      <BlogProvider>
+        <App />
+      </BlogProvider>
+    </ProfileProvider>
   </React.StrictMode>
 );

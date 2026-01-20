@@ -1,29 +1,29 @@
-import { Link } from "react-router-dom";
-import "../styles/Auth.css";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    alert("Registration successful! Please login.");
+    navigate("/login");
+  };
+
   return (
-    <div className="auth-container reverse">
-      <div className="auth-left">
-        <h2>Join DevBlog 🚀</h2>
-        <p>Create an account and start writing</p>
-      </div>
+    <div className="center">
+      <h2>Register</h2>
 
-      <div className="auth-right">
-        <form className="auth-form">
-          <h3>Register</h3>
+      <form onSubmit={handleRegister}>
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
 
-          <input type="text" placeholder="Username" required />
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
+        <button type="submit">Create Account</button>
+      </form>
 
-          <button type="submit">Register</button>
-
-          <p>
-            Already have an account? <Link to="/login">Login</Link>
-          </p>
-        </form>
-      </div>
+      <p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </div>
   );
 }

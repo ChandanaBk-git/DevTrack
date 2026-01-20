@@ -1,57 +1,74 @@
 import { useNavigate } from "react-router-dom";
-import "../styles/CreateBlog.css";
 import { useBlogs } from "../context/BlogContext";
 
 export default function CreateBlog() {
-  const navigate = useNavigate();
   const { addBlog } = useBlogs();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const title = e.target.title.value.trim();
+    const content = e.target.content.value.trim();
+
+    if (!title || !content) return;
+
     const newBlog = {
-      id: Date.now(),
-      title: e.target[0].value,
-      category: e.target[1].value,
-      content: e.target[2].value,
+      id: Date.now(),              // unique id
+      title,
+      content,
+      author: "Chandana",          // current user (static for now)
+      createdAt: Date.now(),       // ✅ fixes NaN days issue
+      likes: 0
     };
 
     addBlog(newBlog);
-    alert("Blog published successfully ✨");
-    navigate("/blogs");
+    navigate("/profile");
   };
 
   return (
-    <div className="create-blog">
-      <h2>Create New Blog ✍️</h2>
+    <div
+      style={{
+        maxWidth: "700px",
+        margin: "0 auto",
+        padding: "20px"
+      }}
+    >
+      <h2 style={{ marginBottom: "20px" }}>Create New Blog</h2>
 
-      <form className="blog-form" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
+          name="title"
           type="text"
-          placeholder="Blog Title"
+          placeholder="Blog title"
           required
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "15px"
+          }}
         />
 
-        <select required>
-          <option value="">Select Category</option>
-          <option value="technology">Technology</option>
-          <option value="programming">Programming</option>
-          <option value="career">Career</option>
-          <option value="education">Education</option>
-        </select>
-
         <textarea
+          name="content"
           placeholder="Write your blog content here..."
-          rows="10"
           required
-        ></textarea>
+          rows="8"
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "15px"
+          }}
+        />
 
-        <div className="blog-actions">
-          <button type="submit">Publish</button>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button type="submit">
+            Publish
+          </button>
+
           <button
             type="button"
-            className="cancel"
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/profile")}
           >
             Cancel
           </button>

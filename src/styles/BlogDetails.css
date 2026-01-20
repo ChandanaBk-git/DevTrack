@@ -1,0 +1,26 @@
+.blog-details {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.meta {
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.content {
+  line-height: 1.7;
+}
+
+.comment-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.comment {
+  background: #f3f4f6;
+  padding: 8px;
+  border-radius: 5px;
+}
