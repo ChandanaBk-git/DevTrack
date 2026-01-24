@@ -1,74 +1,56 @@
-/* Page */
 .dashboard {
-  max-width: 900px;
-  margin: 0 auto;
   padding: 20px;
-  background: #f9fafb;
 }
 
-/* Search */
-.search-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 25px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  font-size: 14px;
-}
-
-/* Card */
-.post-card {
-  background: #ffffff;
-  padding: 20px;
-  margin-bottom: 18px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-  transition: transform 0.2s ease;
-}
-
-.post-card:hover {
-  transform: translateY(-2px);
-}
-
-/* Title */
-.post-title {
-  font-size: 20px;
-  margin-bottom: 8px;
-  color: #111827;
-}
-
-/* Meta */
-.post-meta {
+.members {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  color: #6b7280;
-  font-size: 13px;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.avatar {
-  width: 36px;
-  height: 36px;
+.member-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.member-card img {
+  width: 60px;
   border-radius: 50%;
-  object-fit: cover;
 }
 
-.time {
-  margin-left: 6px;
+.subjects {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* Content */
-.post-content {
-  color: #374151;
-  line-height: 1.6;
-}
-
-/* Like */
-.like-btn {
-  margin-top: 10px;
-  background: none;
+.subjects button {
+  padding: 6px 14px;
+  border-radius: 15px;
   border: none;
-  cursor: pointer;
-  font-size: 15px;
 }
+
+.subjects .active {
+  background: black;
+  color: white;
+}
+
+.posts {
+  display: grid;
+  gap: 15px;
+}
+
+.post-card {
+  padding: 15px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.post-card.frontend { background: #e0f2fe; }
+.post-card.backend { background: #dcfce7; }
+.post-card.fullstack { background: #fef9c3; }

@@ -1,23 +1,25 @@
 import { useParams, Link } from "react-router-dom";
+import { authors } from "../data/authors";
 import { useBlogs } from "../context/BlogContext";
 
 export default function AuthorProfile() {
   const { name } = useParams();
   const { blogs } = useBlogs();
 
+  const author = authors[name];
   const authorBlogs = blogs.filter(b => b.author === name);
 
   return (
-    <div style={{ maxWidth: "800px", margin: "auto" }}>
-      <h2>👤 {name}</h2>
-      <p>{authorBlogs.length} posts</p>
+    <div style={{ padding: "20px" }}>
+      <img src={author.avatar} width="100" />
+      <h2>{author.name}</h2>
+      <p>{author.role}</p>
 
+      <h3>Posts</h3>
       {authorBlogs.map(blog => (
-        <div key={blog.id}>
-          <Link to={`/blog/${blog.id}`}>
-            <h4>{blog.title}</h4>
-          </Link>
-        </div>
+        <Link key={blog.id} to={`/blog/${blog.id}`}>
+          <p>{blog.title}</p>
+        </Link>
       ))}
     </div>
   );
